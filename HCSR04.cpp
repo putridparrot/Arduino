@@ -1,6 +1,3 @@
-// 
-// 
-// 
 
 #include "HCSR04.h"
 
@@ -13,7 +10,7 @@ void HCSR04::init(int triggerPin, int echoPin)
 	pinMode(echoPin, INPUT);
 }
 
-long HCSR04::ping()
+double HCSR04::getDistance()
 {
 	digitalWrite(triggerPin, LOW);
 	delayMicroseconds(2);
@@ -22,7 +19,7 @@ long HCSR04::ping()
 	digitalWrite(triggerPin, LOW);
 
 	long duration = pulseIn(echoPin, HIGH);
-	long distance = (duration / 2) / 29.1;
+	double distance = (duration / 2) / 29.1;
 	// >= 200 or <= 0 are error values, or out of range
 	return distance >= 200 || distance <= 0 ? -1 : distance;
 }

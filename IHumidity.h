@@ -1,22 +1,14 @@
-// IHumidity.h
+#ifndef __IHUMIDITY_H
+#define __IHUMIDITY_H
 
-#ifndef _IHUMIDITY_h
-#define _IHUMIDITY_h
-
-#if defined(ARDUINO) && ARDUINO >= 100
-	#include "Arduino.h"
-#else
-	#include "WProgram.h"
+#ifndef __EXPORT_H
+#include "Export.h"
 #endif
 
-namespace Sensor
+class API IHumidity
 {
-	class IHumidity
-	{
-	public:
-		virtual int getHumidity() = 0;
-	};
+public:
+	virtual double getHumidity() = 0;
+};
 
-}
 #endif
-

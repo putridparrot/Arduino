@@ -1,7 +1,7 @@
 // Ultrasound.h
 
-#ifndef _ULTRASOUND_h
-#define _ULTRASOUND_h
+#ifndef __HCSR04_H
+#define __HCSR04_H
 
 #if defined(ARDUINO) && ARDUINO >= 100
 	#include "Arduino.h"
@@ -9,22 +9,24 @@
 	#include "WProgram.h"
 #endif
 
+#ifndef _IDISTANCE_H
+#include "IDistance.h"
+#endif
+
 /*
    HC-SR04 ultra sound component
 */
-class HCSR04
+class HCSR04 :
+	public IDistance
 {
 private:
 	int triggerPin;
 	int echoPin;
 
-protected:
-
-
 public:
 
 	void init(int tiggerPin, int echoPin);
-	long ping();
+	double getDistance();
 };
 
 #endif

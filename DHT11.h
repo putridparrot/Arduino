@@ -1,12 +1,12 @@
 // Dht11.h
 
-#ifndef _DHT11_h
-#define _DHT11_h
+#ifndef __DHT11_H
+#define __DHT11_H
 
 #if defined(ARDUINO) && ARDUINO >= 100
-	#include "Arduino.h"
+#include "Arduino.h"
 #else
-	#include "WProgram.h"
+#include "WProgram.h"
 #endif
 
 #ifndef _ITEMPERATURE_h
@@ -16,31 +16,34 @@
 #include "IHumidity.h"
 #endif
 
-//namespace Sensor
-//{
-#define DHT_OK				 0
-#define DHT_ERROR_CHECKSUM	-1
-#define DHT_ERROR_TIMEOUT	-2
+enum DHT_STATUS
+{
+	OK = 0,
+	ERROR_CHECKSUM = -1,
+	ERROR_TIMEOUT = -2
+};
 
-	class DHT11 : 
-		public ITemperature, 
-		public IHumidity
-	{
-	private:
-		int digitalPin;
+// DHT11 Distance and Humity sensor
 
-		int temperature;
-		int humidity;
-	protected:
+class DHT11 :
+	public ITemperature,
+	public IHumidity
+{
+private:
+	int digitalPin;
 
-	public:
-		void init(int digitalPin);
+	double temperature;
+	double humidity;
+protected:
 
-		int read();
+public:
+	void init(int digitalPin);
 
-		int getTemperature();
-		int getHumidity();
-	};
-//}
+	int read();
+
+	double getTemperature();
+	double getHumidity();
+};
+
 #endif
 
